@@ -1,13 +1,17 @@
 {
-    "name": "laravel/breeze",
-    "description": "Minimal Laravel authentication scaffolding with Blade and Tailwind.",
+    "name": "khadegd/laravel-breeze-bootstrap",
+    "description": "Minimal Laravel authentication scaffolding with Blade and Bootstrap.",
     "keywords": ["laravel", "auth"],
     "license": "MIT",
     "support": {
-        "issues": "https://github.com/laravel/breeze/issues",
-        "source": "https://github.com/laravel/breeze"
+        "issues": "https://github.com/khadegd/larave-breeze-bootstrap/issues",
+        "source": "https://github.com/khadegd/laravel-breeze-bootstrap"
     },
     "authors": [
+        {
+            "name": "Ganesh Khade",
+            "email": "ganesh.khade@outlook.com"
+        },
         {
             "name": "Taylor Otwell",
             "email": "taylor@laravel.com"
