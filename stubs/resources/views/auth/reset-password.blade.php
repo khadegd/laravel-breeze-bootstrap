@@ -1,8 +1,8 @@
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+            <a href="/" class="d-flex justify-content-center mb-4">
+                <x-application-logo width=64 height=64 />
             </a>
         </x-slot>
 
@@ -19,30 +19,30 @@
             <div>
                 <x-label for="email" :value="__('Email')" />
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required autofocus />
+                <x-input id="email" class="" type="email" name="email" :value="old('email', $request->email)" required autofocus />
             </div>
 
             <!-- Password -->
             <div class="mt-4">
-                <label for="password" class="block font-medium text-sm text-gray-700">
+                <label for="password" class="">
                     {{ __('Password') }}
                 </label>
 
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required />
+                <x-input id="password" class="" type="password" name="password" required />
             </div>
 
             <!-- Confirm Password -->
             <div class="mt-4">
-                <label for="password_confirmation" class="block font-medium text-sm text-gray-700">
+                <label for="password_confirmation" class="">
                     {{ __('Confirm Password') }}
                 </label>
 
-                <x-input id="password_confirmation" class="block mt-1 w-full"
+                <x-input id="password_confirmation" class=""
                                     type="password"
                                     name="password_confirmation" required />
             </div>
 
-            <div class="flex items-center justify-end mt-4">
+            <div class="d-flex justify-content-end mt-4">
                 <x-button>
                     {{ __('Reset Password') }}
                 </x-button>

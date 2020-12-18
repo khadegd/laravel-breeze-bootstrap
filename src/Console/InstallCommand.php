@@ -36,6 +36,9 @@ class InstallCommand extends Command
                 'postcss-import' => '^12.0.1',
                 'tailwindcss' => 'npm:@tailwindcss/postcss7-compat@^2.0.1',
                 'autoprefixer' => '^9.8.6',
+                'sass'=> '^1.30.0',
+                'sass-loader'=> '^8.0.2',
+                'bootstrap' => '^5.0.0-beta1'
             ] + $packages;
         });
 
