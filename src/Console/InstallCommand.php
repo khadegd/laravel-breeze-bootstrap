@@ -81,6 +81,7 @@ class InstallCommand extends Command
         copy(__DIR__.'/../../stubs/tailwind.config.js', base_path('tailwind.config.js'));
         copy(__DIR__.'/../../stubs/webpack.mix.js', base_path('webpack.mix.js'));
         copy(__DIR__.'/../../stubs/resources/css/app.css', resource_path('css/app.css'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/resources/sass', base_path('resources/sass'));
         copy(__DIR__.'/../../stubs/resources/js/app.js', resource_path('js/app.js'));
 
         $this->info('Breeze scaffolding installed successfully.');
