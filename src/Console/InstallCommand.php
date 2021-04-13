@@ -34,16 +34,12 @@ class InstallCommand extends Command
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
             return [
-                '@tailwindcss/forms' => '^0.2.1',
-                'alpinejs' => '^2.7.3',
-                'autoprefixer' => '^10.1.0',
-                'postcss' => '^8.2.1',
-                'postcss-import' => '^12.0.1',
-                'tailwindcss' => '^2.0.2',
-                'autoprefixer' => '^9.8.6',
-                'sass'=> '^1.30.0',
-                'sass-loader'=> '^8.0.2',
-                'bootstrap' => '^5.0.0-beta1'
+                'alpinejs' => '^2.8.2',
+                'axios' => '^0.21.1',
+                'lodash' => '^4.17.21',
+                'sass'=> '^1.32.8',
+                'sass-loader'=> '^11.0.1',
+                'bootstrap' => '^5.0.0-beta3'
             ] + $packages;
         });
 
@@ -83,7 +79,6 @@ class InstallCommand extends Command
         $this->replaceInFile('/home', '/dashboard', app_path('Providers/RouteServiceProvider.php'));
 
         // Tailwind / Webpack...
-        copy(__DIR__.'/../../stubs/default/tailwind.config.js', base_path('tailwind.config.js'));
         copy(__DIR__.'/../../stubs/default/webpack.mix.js', base_path('webpack.mix.js'));
         copy(__DIR__.'/../../stubs/default/resources/css/app.css', resource_path('css/app.css'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/resources/sass', base_path('resources/sass'));
