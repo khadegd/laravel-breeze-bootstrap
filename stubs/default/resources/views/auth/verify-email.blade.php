@@ -31,7 +31,7 @@
                 @csrf
 
                 <button type="submit" class="btn btn-link">
-                    {{ __('Logout') }}
+                    {{ __('Log out') }}
                 </button>
             </form>
         </div>

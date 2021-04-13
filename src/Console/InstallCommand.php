@@ -4,6 +4,8 @@ namespace Laravel\Breeze\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Str;
+use Symfony\Component\Process\Process;
 
 class InstallCommand extends Command
 {
@@ -12,7 +14,8 @@ class InstallCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'breeze:install';
+    protected $signature = 'breeze:install
+                            {--composer=global : Absolute path to the Composer binary which should be used to install packages}';
 
     /**
      * The console command description.
@@ -33,8 +36,10 @@ class InstallCommand extends Command
             return [
                 '@tailwindcss/forms' => '^0.2.1',
                 'alpinejs' => '^2.7.3',
+                'autoprefixer' => '^10.1.0',
+                'postcss' => '^8.2.1',
                 'postcss-import' => '^12.0.1',
-                'tailwindcss' => 'npm:@tailwindcss/postcss7-compat@^2.0.1',
+                'tailwindcss' => '^2.0.2',
                 'autoprefixer' => '^9.8.6',
                 'sass'=> '^1.30.0',
                 'sass-loader'=> '^8.0.2',
@@ -44,33 +49,33 @@ class InstallCommand extends Command
 
         // Controllers...
         (new Filesystem)->ensureDirectoryExists(app_path('Http/Controllers/Auth'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/App/Http/Controllers/Auth', app_path('Http/Controllers/Auth'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/App/Http/Controllers/Auth', app_path('Http/Controllers/Auth'));
 
         // Requests...
         (new Filesystem)->ensureDirectoryExists(app_path('Http/Requests/Auth'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/App/Http/Requests/Auth', app_path('Http/Requests/Auth'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/App/Http/Requests/Auth', app_path('Http/Requests/Auth'));
 
         // Views...
         (new Filesystem)->ensureDirectoryExists(resource_path('views/auth'));
         (new Filesystem)->ensureDirectoryExists(resource_path('views/layouts'));
         (new Filesystem)->ensureDirectoryExists(resource_path('views/components'));
 
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/resources/views/auth', resource_path('views/auth'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/resources/views/layouts', resource_path('views/layouts'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/resources/views/components', resource_path('views/components'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/resources/views/auth', resource_path('views/auth'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/resources/views/layouts', resource_path('views/layouts'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/resources/views/components', resource_path('views/components'));
 
-        copy(__DIR__.'/../../stubs/resources/views/dashboard.blade.php', resource_path('views/dashboard.blade.php'));
+        copy(__DIR__.'/../../stubs/default/resources/views/dashboard.blade.php', resource_path('views/dashboard.blade.php'));
 
         // Components...
         (new Filesystem)->ensureDirectoryExists(app_path('View/Components'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/App/View/Components', app_path('View/Components'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/App/View/Components', app_path('View/Components'));
 
         // Tests...
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/tests/Feature', base_path('tests/Feature'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/tests/Feature', base_path('tests/Feature'));
 
         // Routes...
-        copy(__DIR__.'/../../stubs/routes/web.php', base_path('routes/web.php'));
-        copy(__DIR__.'/../../stubs/routes/auth.php', base_path('routes/auth.php'));
+        copy(__DIR__.'/../../stubs/default/routes/web.php', base_path('routes/web.php'));
+        copy(__DIR__.'/../../stubs/default/routes/auth.php', base_path('routes/auth.php'));
 
         // "Dashboard" Route...
         $this->replaceInFile('/home', '/dashboard', resource_path('views/welcome.blade.php'));
@@ -78,14 +83,70 @@ class InstallCommand extends Command
         $this->replaceInFile('/home', '/dashboard', app_path('Providers/RouteServiceProvider.php'));
 
         // Tailwind / Webpack...
-        copy(__DIR__.'/../../stubs/tailwind.config.js', base_path('tailwind.config.js'));
-        copy(__DIR__.'/../../stubs/webpack.mix.js', base_path('webpack.mix.js'));
-        copy(__DIR__.'/../../stubs/resources/css/app.css', resource_path('css/app.css'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/resources/sass', base_path('resources/sass'));
-        copy(__DIR__.'/../../stubs/resources/js/app.js', resource_path('js/app.js'));
-
+        copy(__DIR__.'/../../stubs/default/tailwind.config.js', base_path('tailwind.config.js'));
+        copy(__DIR__.'/../../stubs/default/webpack.mix.js', base_path('webpack.mix.js'));
+        copy(__DIR__.'/../../stubs/default/resources/css/app.css', resource_path('css/app.css'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/resources/sass', base_path('resources/sass'));
+        copy(__DIR__.'/../../stubs/default/resources/js/app.js', resource_path('js/app.js'));
         $this->info('Breeze scaffolding installed successfully.');
         $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
+    }
+
+
+    /**
+     * Install the middleware to a group in the application Http Kernel.
+     *
+     * @param  string  $after
+     * @param  string  $name
+     * @param  string  $group
+     * @return void
+     */
+    protected function installMiddlewareAfter($after, $name, $group = 'web')
+    {
+        $httpKernel = file_get_contents(app_path('Http/Kernel.php'));
+
+        $middlewareGroups = Str::before(Str::after($httpKernel, '$middlewareGroups = ['), '];');
+        $middlewareGroup = Str::before(Str::after($middlewareGroups, "'$group' => ["), '],');
+
+        if (! Str::contains($middlewareGroup, $name)) {
+            $modifiedMiddlewareGroup = str_replace(
+                $after.',',
+                $after.','.PHP_EOL.'            '.$name.',',
+                $middlewareGroup,
+            );
+
+            file_put_contents(app_path('Http/Kernel.php'), str_replace(
+                $middlewareGroups,
+                str_replace($middlewareGroup, $modifiedMiddlewareGroup, $middlewareGroups),
+                $httpKernel
+            ));
+        }
+    }
+
+    /**
+     * Installs the given Composer Packages into the application.
+     *
+     * @param  mixed  $packages
+     * @return void
+     */
+    protected function requireComposerPackages($packages)
+    {
+        $composer = $this->option('composer');
+
+        if ($composer !== 'global') {
+            $command = ['php', $composer, 'require'];
+        }
+
+        $command = array_merge(
+            $command ?? ['composer', 'require'],
+            is_array($packages) ? $packages : func_get_args()
+        );
+
+        (new Process($command, base_path(), ['COMPOSER_MEMORY_LIMIT' => '-1']))
+            ->setTimeout(null)
+            ->run(function ($type, $output) {
+                $this->output->write($output);
+            });
     }
 
     /**
