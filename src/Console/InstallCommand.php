@@ -37,6 +37,8 @@ class InstallCommand extends Command
                 'alpinejs' => '^2.8.2',
                 'axios' => '^0.21.1',
                 'lodash' => '^4.17.21',
+                'postcss'=> '^8.1.14',
+                'resolve-url-loader'=> '^3.1.2',
                 'sass'=> '^1.32.8',
                 'sass-loader'=> '^11.0.1',
                 'bootstrap' => '^5.0.0-beta3'
@@ -80,7 +82,6 @@ class InstallCommand extends Command
 
         // Tailwind / Webpack...
         copy(__DIR__.'/../../stubs/default/webpack.mix.js', base_path('webpack.mix.js'));
-        copy(__DIR__.'/../../stubs/default/resources/css/app.css', resource_path('css/app.css'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/resources/sass', base_path('resources/sass'));
         copy(__DIR__.'/../../stubs/default/resources/js/app.js', resource_path('js/app.js'));
         $this->info('Breeze scaffolding installed successfully.');
