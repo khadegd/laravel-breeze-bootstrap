@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Auth;
 
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
@@ -27,11 +27,11 @@ class EmailVerificationTest extends TestCase
 
     public function test_email_can_be_verified()
     {
-        Event::fake();
-
         $user = User::factory()->create([
             'email_verified_at' => null,
         ]);
+
+        Event::fake();
 
         $verificationUrl = URL::temporarySignedRoute(
             'verification.verify',

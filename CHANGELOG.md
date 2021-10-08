@@ -1,6 +1,96 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/breeze/compare/v1.1.5...1.x)
+## [Unreleased](https://github.com/laravel/breeze/compare/v1.4.2...1.x)
+
+
+## [v1.4.2 (2021-09-28)](https://github.com/laravel/breeze/compare/v1.4.1...v1.4.2)
+
+### Changed
+- Change namespace ([7b39f9c](https://github.com/laravel/breeze/commit/7b39f9c114c713a7d75ceeb79b4f5efe3d4f682a))
+
+
+## [v1.4.1 (2021-09-07)](https://github.com/laravel/breeze/compare/v1.4.0...v1.4.1)
+
+### Fixed
+- Fixes installation of pest on vue/react stacks ([#100](https://github.com/laravel/breeze/pull/100))
+
+
+## [v1.4.0 (2021-08-27)](https://github.com/laravel/breeze/compare/v1.3.2...v1.4.0)
+
+### Added
+- Pest scaffolding ([#99](https://github.com/laravel/breeze/pull/99))
+
+
+## [v1.3.2 (2021-08-03)](https://github.com/laravel/breeze/compare/v1.3.1...v1.3.2)
+
+### Changed
+- Update url for JS ([eba8457](https://github.com/laravel/breeze/commit/eba8457b2e16d92fb0909e6e4a36f7cf9f50bc78))
+- Add Vue file extension to all Vue components imported ([#89](https://github.com/laravel/breeze/pull/89))
+- Update `<Link>` tags & implement `<Head>` management (title tag) ([#90](https://github.com/laravel/breeze/pull/90), [4dce8a8](https://github.com/laravel/breeze/commit/4dce8a8c9dd1b0ca23fbe92fa51b17cc5ccd6bb5), [128fd28](https://github.com/laravel/breeze/commit/128fd28e2ebd5fde7730d90b0052d175b887568a), [#94](https://github.com/laravel/breeze/pull/94))
+
+### Fixed
+- Change from POST to GET on responsive dashboard link ([#92](https://github.com/laravel/breeze/pull/92))
+
+
+## [v1.3.1 (2021-06-22)](https://github.com/laravel/breeze/compare/v1.3.0...v1.3.1)
+
+### Fixed
+- Fix EmailVerificationTest to pass using Uuids ([#85](https://github.com/laravel/breeze/pull/85))
+
+
+## [v1.3.0 (2021-06-08)](https://github.com/laravel/breeze/compare/v1.2.3...v1.3.0)
+
+### Changed
+- Update Inertia ([c439176](https://github.com/laravel/breeze/commit/c43917630e9b45b78dfd805f152262e08a7d2ffb))
+- Update versions ([aa90bfd](https://github.com/laravel/breeze/commit/aa90bfd5b31cedf848087d105b6924b0f120fc99))
+
+
+## [v1.2.3 (2021-06-08)](https://github.com/laravel/breeze/compare/v1.2.2...v1.2.3)
+
+### Fixed
+- Fix purge line to include *.js ([#83](https://github.com/laravel/breeze/pull/83))
+
+
+## [v1.2.2 (2021-06-01)](https://github.com/laravel/breeze/compare/v1.2.1...v1.2.2)
+
+### Fixed
+- Fix CORS policy errors with inertia stack ([#82](https://github.com/laravel/breeze/pull/82))
+
+
+## [v1.2.1 (2021-05-25)](https://github.com/laravel/breeze/compare/v1.2.0...v1.2.1)
+
+### Fixed
+- Fix dropdown ([87e849a](https://github.com/laravel/breeze/commit/87e849a2fd635628d99aa8514e2ee9321decee27))
+- Fix link type ([c83d1ac](https://github.com/laravel/breeze/commit/c83d1ac389a58f1fb9ee6491ce14488f6a0a746b))
+
+
+## [v1.2.0 (2021-05-20)](https://github.com/laravel/breeze/compare/v1.1.8...v1.2.0)
+
+### Added
+- React installation option ([#73](https://github.com/laravel/breeze/pull/73))
+- Use new `Password::defaults()` feature ([#71](https://github.com/laravel/breeze/pull/71))
+
+
+## [v1.1.8 (2021-05-18)](https://github.com/laravel/breeze/compare/v1.1.7...v1.1.8)
+
+### Fixed
+- Bump Inertia version to match Spark ([#70](https://github.com/laravel/breeze/pull/70))
+
+
+## [v1.1.7 (2021-05-11)](https://github.com/laravel/breeze/compare/v1.1.6...v1.1.7)
+
+### Changed
+- Uses password rule by default ([#65](https://github.com/laravel/breeze/pull/65))
+
+### Fixed
+- Use boolean() instead of filled() ([#68](https://github.com/laravel/breeze/pull/68))
+- Fix create method docblock return value ([#69](https://github.com/laravel/breeze/pull/69))
+
+
+## [v1.1.6 (2021-04-27)](https://github.com/laravel/breeze/compare/v1.1.5...v1.1.6)
+
+### Fixed
+- Fix Vue warning ([#62](https://github.com/laravel/breeze/pull/62))
 
 
 ## [v1.1.5 (2021-04-13)](https://github.com/laravel/breeze/compare/v1.1.4...v1.1.5)

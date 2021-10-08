@@ -17,7 +17,7 @@ Breeze provides a minimal and simple starting point for building a Laravel appli
 
 Laravel Breeze is powered by Blade and Bootstrap. If you're looking for a more robust Laravel starter kit that includes two factor authentication, Livewire / Inertia support, and more, check out [Laravel Jetstream](https://jetstream.laravel.com).
 
-Getting started couldn't be easier:
+## Official Documentation
 
 ```bash
 laravel new my-app
@@ -28,6 +28,7 @@ composer require khadegd/laravel-breeze-bootstrap --dev
 
 php artisan breeze:install
 ```
+Documentation for Breeze can be found on the [Laravel website](https://laravel.com/docs/8.x/starter-kits#laravel-breeze).
 
 ## Contributing
 
