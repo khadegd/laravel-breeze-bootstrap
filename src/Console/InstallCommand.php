@@ -44,39 +44,39 @@ class InstallCommand extends Command
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
             return [
-                'alpinejs' => '^2.8.2',
-                'axios' => '^0.21.1',
+                'alpinejs' => '^3.4.2',
+                'axios' => '^0.22.0',
                 'lodash' => '^4.17.21',
-                'postcss'=> '^8.1.14',
-                'resolve-url-loader'=> '^3.1.2',
-                'sass'=> '^1.32.8',
-                'sass-loader'=> '^11.0.1',
-                'bootstrap' => '^5.0.0-beta3'
+                'postcss'=> '^8.3.9',
+                'resolve-url-loader'=> '^3.1.4',
+                'sass'=> '^1.42.1',
+                'sass-loader'=> '^12.1.0',
+                'bootstrap' => '^5.1.3'
             ] + $packages;
         });
 
         // Controllers...
-        (new Filesystem)->ensureDirectoryExists(app_path('Http/Controllers/Auth'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/App/Http/Controllers/Auth', app_path('Http/Controllers/Auth'));
+        (new Filesystem())->ensureDirectoryExists(app_path('Http/Controllers/Auth'));
+        (new Filesystem())->copyDirectory(__DIR__.'/../../stubs/default/App/Http/Controllers/Auth', app_path('Http/Controllers/Auth'));
 
         // Requests...
-        (new Filesystem)->ensureDirectoryExists(app_path('Http/Requests/Auth'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/App/Http/Requests/Auth', app_path('Http/Requests/Auth'));
+        (new Filesystem())->ensureDirectoryExists(app_path('Http/Requests/Auth'));
+        (new Filesystem())->copyDirectory(__DIR__.'/../../stubs/default/App/Http/Requests/Auth', app_path('Http/Requests/Auth'));
 
         // Views...
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/auth'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/layouts'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('views/components'));
+        (new Filesystem())->ensureDirectoryExists(resource_path('views/auth'));
+        (new Filesystem())->ensureDirectoryExists(resource_path('views/layouts'));
+        (new Filesystem())->ensureDirectoryExists(resource_path('views/components'));
 
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/resources/views/auth', resource_path('views/auth'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/resources/views/layouts', resource_path('views/layouts'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/resources/views/components', resource_path('views/components'));
+        (new Filesystem())->copyDirectory(__DIR__.'/../../stubs/default/resources/views/auth', resource_path('views/auth'));
+        (new Filesystem())->copyDirectory(__DIR__.'/../../stubs/default/resources/views/layouts', resource_path('views/layouts'));
+        (new Filesystem())->copyDirectory(__DIR__.'/../../stubs/default/resources/views/components', resource_path('views/components'));
 
         copy(__DIR__.'/../../stubs/default/resources/views/dashboard.blade.php', resource_path('views/dashboard.blade.php'));
 
         // Components...
-        (new Filesystem)->ensureDirectoryExists(app_path('View/Components'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/App/View/Components', app_path('View/Components'));
+        (new Filesystem())->ensureDirectoryExists(app_path('View/Components'));
+        (new Filesystem())->copyDirectory(__DIR__.'/../../stubs/default/App/View/Components', app_path('View/Components'));
 
         // Tests...
         $this->installTests();
@@ -92,7 +92,7 @@ class InstallCommand extends Command
 
         // Tailwind / Webpack...
         copy(__DIR__.'/../../stubs/default/webpack.mix.js', base_path('webpack.mix.js'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/resources/sass', base_path('resources/sass'));
+        (new Filesystem())->copyDirectory(__DIR__.'/../../stubs/default/resources/sass', base_path('resources/sass'));
         copy(__DIR__.'/../../stubs/default/resources/js/app.js', resource_path('js/app.js'));
         $this->info('Breeze scaffolding installed successfully.');
         $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
@@ -105,16 +105,16 @@ class InstallCommand extends Command
      */
     protected function installTests()
     {
-        (new Filesystem)->ensureDirectoryExists(base_path('tests/Feature/Auth'));
+        (new Filesystem())->ensureDirectoryExists(base_path('tests/Feature/Auth'));
 
         if ($this->option('pest')) {
             $this->requireComposerPackages('pestphp/pest:^1.16', 'pestphp/pest-plugin-laravel:^1.1');
 
-            (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/pest-tests/Feature', base_path('tests/Feature/Auth'));
-            (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/pest-tests/Unit', base_path('tests/Unit'));
-            (new Filesystem)->copy(__DIR__.'/../../stubs/default/pest-tests/Pest.php', base_path('tests/Pest.php'));
+            (new Filesystem())->copyDirectory(__DIR__.'/../../stubs/default/pest-tests/Feature', base_path('tests/Feature/Auth'));
+            (new Filesystem())->copyDirectory(__DIR__.'/../../stubs/default/pest-tests/Unit', base_path('tests/Unit'));
+            (new Filesystem())->copy(__DIR__.'/../../stubs/default/pest-tests/Pest.php', base_path('tests/Pest.php'));
         } else {
-            (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/tests/Feature', base_path('tests/Feature/Auth'));
+            (new Filesystem())->copyDirectory(__DIR__.'/../../stubs/default/tests/Feature', base_path('tests/Feature/Auth'));
         }
     }
 
@@ -146,12 +146,12 @@ class InstallCommand extends Command
         });
 
         // Controllers...
-        (new Filesystem)->ensureDirectoryExists(app_path('Http/Controllers/Auth'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-common/app/Http/Controllers/Auth', app_path('Http/Controllers/Auth'));
+        (new Filesystem())->ensureDirectoryExists(app_path('Http/Controllers/Auth'));
+        (new Filesystem())->copyDirectory(__DIR__.'/../../stubs/inertia-common/app/Http/Controllers/Auth', app_path('Http/Controllers/Auth'));
 
         // Requests...
-        (new Filesystem)->ensureDirectoryExists(app_path('Http/Requests/Auth'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/App/Http/Requests/Auth', app_path('Http/Requests/Auth'));
+        (new Filesystem())->ensureDirectoryExists(app_path('Http/Requests/Auth'));
+        (new Filesystem())->copyDirectory(__DIR__.'/../../stubs/default/App/Http/Requests/Auth', app_path('Http/Requests/Auth'));
 
         // Middleware...
         $this->installMiddlewareAfter('SubstituteBindings::class', '\App\Http\Middleware\HandleInertiaRequests::class');
@@ -162,13 +162,13 @@ class InstallCommand extends Command
         copy(__DIR__.'/../../stubs/inertia-common/resources/views/app.blade.php', resource_path('views/app.blade.php'));
 
         // Components + Pages...
-        (new Filesystem)->ensureDirectoryExists(resource_path('js/Components'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('js/Layouts'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('js/Pages'));
+        (new Filesystem())->ensureDirectoryExists(resource_path('js/Components'));
+        (new Filesystem())->ensureDirectoryExists(resource_path('js/Layouts'));
+        (new Filesystem())->ensureDirectoryExists(resource_path('js/Pages'));
 
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-vue/resources/js/Components', resource_path('js/Components'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-vue/resources/js/Layouts', resource_path('js/Layouts'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-vue/resources/js/Pages', resource_path('js/Pages'));
+        (new Filesystem())->copyDirectory(__DIR__.'/../../stubs/inertia-vue/resources/js/Components', resource_path('js/Components'));
+        (new Filesystem())->copyDirectory(__DIR__.'/../../stubs/inertia-vue/resources/js/Layouts', resource_path('js/Layouts'));
+        (new Filesystem())->copyDirectory(__DIR__.'/../../stubs/inertia-vue/resources/js/Pages', resource_path('js/Pages'));
 
         // Tests...
         $this->installTests();
@@ -223,12 +223,12 @@ class InstallCommand extends Command
         });
 
         // Controllers...
-        (new Filesystem)->ensureDirectoryExists(app_path('Http/Controllers/Auth'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-common/app/Http/Controllers/Auth', app_path('Http/Controllers/Auth'));
+        (new Filesystem())->ensureDirectoryExists(app_path('Http/Controllers/Auth'));
+        (new Filesystem())->copyDirectory(__DIR__.'/../../stubs/inertia-common/app/Http/Controllers/Auth', app_path('Http/Controllers/Auth'));
 
         // Requests...
-        (new Filesystem)->ensureDirectoryExists(app_path('Http/Requests/Auth'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/App/Http/Requests/Auth', app_path('Http/Requests/Auth'));
+        (new Filesystem())->ensureDirectoryExists(app_path('Http/Requests/Auth'));
+        (new Filesystem())->copyDirectory(__DIR__.'/../../stubs/default/App/Http/Requests/Auth', app_path('Http/Requests/Auth'));
 
         // Middleware...
         $this->installMiddlewareAfter('SubstituteBindings::class', '\App\Http\Middleware\HandleInertiaRequests::class');
@@ -239,13 +239,13 @@ class InstallCommand extends Command
         copy(__DIR__.'/../../stubs/inertia-common/resources/views/app.blade.php', resource_path('views/app.blade.php'));
 
         // Components + Pages...
-        (new Filesystem)->ensureDirectoryExists(resource_path('js/Components'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('js/Layouts'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('js/Pages'));
+        (new Filesystem())->ensureDirectoryExists(resource_path('js/Components'));
+        (new Filesystem())->ensureDirectoryExists(resource_path('js/Layouts'));
+        (new Filesystem())->ensureDirectoryExists(resource_path('js/Pages'));
 
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-react/resources/js/Components', resource_path('js/Components'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-react/resources/js/Layouts', resource_path('js/Layouts'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/inertia-react/resources/js/Pages', resource_path('js/Pages'));
+        (new Filesystem())->copyDirectory(__DIR__.'/../../stubs/inertia-react/resources/js/Components', resource_path('js/Components'));
+        (new Filesystem())->copyDirectory(__DIR__.'/../../stubs/inertia-react/resources/js/Layouts', resource_path('js/Layouts'));
+        (new Filesystem())->copyDirectory(__DIR__.'/../../stubs/inertia-react/resources/js/Pages', resource_path('js/Pages'));
 
         // Tests...
         $this->installTests();
@@ -367,7 +367,7 @@ class InstallCommand extends Command
      */
     protected static function flushNodeModules()
     {
-        tap(new Filesystem, function ($files) {
+        tap(new Filesystem(), function ($files) {
             $files->deleteDirectory(base_path('node_modules'));
 
             $files->delete(base_path('yarn.lock'));
