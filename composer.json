@@ -7,7 +7,7 @@
         "issues": "https://github.com/khadegd/larave-breeze-bootstrap/issues",
         "source": "https://github.com/khadegd/laravel-breeze-bootstrap"
     },
-    "authors": 
+    "authors": [
         {
             "name": "Ganesh Khade",
             "email": "ganesh.khade@outlook.com"
