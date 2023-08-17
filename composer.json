@@ -1,5 +1,5 @@
 {
-    "name": "khadegd/laravel-breeze-bootstrap",
+    "name": "semihyilmaz/laravel-breeze-bootstrap",
     "description": "Minimal Laravel authentication scaffolding with Blade and Bootstrap.",
     "keywords": ["laravel", "auth"],
     "license": "MIT",
@@ -8,6 +8,10 @@
         "source": "https://github.com/khadegd/laravel-breeze-bootstrap"
     },
     "authors": [
+        {
+            "name": "Semih YILMAZ",
+            "email": "semy@semihyilmaz.com"
+        },
         {
             "name": "Ganesh Khade",
             "email": "ganesh.khade@outlook.com"
